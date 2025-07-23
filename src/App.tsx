@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { TextInput } from './components/TextInput/TextInput';
 import { NumberInput } from './components/NumberInput/NumberInput';
+import { Checkbox } from './components/CheckBox/Checkbox';
 import type { FormData } from './types/FormTypes';
 import './App.css'
 
@@ -42,6 +43,13 @@ function App() {
           min={0}
           max={120}
           error={form.age < 0 ? "Age cannot be negative" : undefined}
+        />
+        <Checkbox
+          label="Agree to Terms"
+          name="agreeToTerms"
+          checked={form.agreeToTerms}
+          onChange={handleChange}
+          disabled={false}
         />
       </div>
     </div>

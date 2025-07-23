@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TextInput } from './components/TextInput';
+import { TextInput } from './components/TextInput/TextInput';
 import type { FormData } from './types/FormTypes';
 import './App.css'
 
@@ -13,6 +13,7 @@ function App() {
     agreeToTerms: false,
   });
 
+  // generic change handler that adapts based on input type
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setForm(prev => ({

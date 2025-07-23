@@ -22,17 +22,19 @@ function App() {
   };
 
   return (
-    <>
-      <h1>Personal Project Form</h1>
-      <TextInput
-        label="Name"
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-        placeholder="Enter your name"
-      />
-      {/* Add other components here */}
-    </>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-6">Loomfield Form</h1>
+        <TextInput
+          label="Name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="Enter your name"
+        />
+        {/* Add other components here */}
+      </div>
+    </div>
   )
 }
 

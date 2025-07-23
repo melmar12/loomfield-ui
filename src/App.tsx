@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { TextInput } from './components/TextInput/TextInput';
+import { NumberInput } from './components/NumberInput/NumberInput';
 import type { FormData } from './types/FormTypes';
 import './App.css'
 
@@ -33,7 +34,15 @@ function App() {
           onChange={handleChange}
           placeholder="Enter your name"
         />
-        {/* Add other components here */}
+        <NumberInput
+          label="Age"
+          name="age"
+          value={form.age}
+          onChange={handleChange}
+          min={0}
+          max={120}
+          error={form.age < 0 ? "Age cannot be negative" : undefined}
+        />
       </div>
     </div>
   )

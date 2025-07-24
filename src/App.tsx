@@ -3,8 +3,10 @@ import { TextInput } from './components/TextInput/TextInput';
 import { NumberInput } from './components/NumberInput/NumberInput';
 import { Checkbox } from './components/CheckBox/Checkbox';
 import { Select } from './components/Select/Select';
+import { RadioGroup } from './components/RadioGroup/RadioGroup';
 import type { FormData } from './types/FormTypes';
 import './App.css'
+
 
 function App() {
   const [form, setForm] = useState<FormData>({
@@ -67,6 +69,18 @@ function App() {
           ]}
           error={!form.role ? "Role is required" : undefined}
         />
+        <RadioGroup
+          label="Priority"
+          name="priority"
+          value={form.priority}
+          onChange={handleChange}
+          options={[
+            { value: 'low', label: 'Low' },
+            { value: 'medium', label: 'Medium' },
+            { value: 'high', label: 'High' },
+          ]}
+          error={!form.priority ? "Priority is required" : undefined}
+        /> 
         <Checkbox
           label="Agree to Terms"
           name="agreeToTerms"

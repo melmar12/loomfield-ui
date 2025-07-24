@@ -20,29 +20,16 @@ function App() {
   });
 
   // generic change handler that adapts based on input type
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
     setForm(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
-
-  // change handler for select
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setForm(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  // change handler for textarea
-  const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm(prev => ({
-      ...prev,
-      [name]: value,
+      [name]:
+        type === 'checkbox'
+          ? (e.target instanceof HTMLInputElement ? e.target.checked : false)
+          : type === 'number'
+          ? Number(value)
+          : value,
     }));
   };
 
@@ -70,7 +57,7 @@ function App() {
           label="Role"
           name="role"
           value={form.role}
-          onChange={handleSelectChange}
+          onChange={handleChange}
           options={[
             { value: '', label: 'Select a role' },
             { value: 'admin', label: 'Admin' },
@@ -95,7 +82,7 @@ function App() {
           label="Description"
           name="description"
           value={form.description}
-          onChange={handleTextAreaChange}
+          onChange={handleChange}
           placeholder="Enter a description"
           rows={4}
           error={form.description.length < 10 ? "Description must be at least 10 characters" : undefined}

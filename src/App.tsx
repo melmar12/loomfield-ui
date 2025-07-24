@@ -4,6 +4,7 @@ import { NumberInput } from './components/NumberInput/NumberInput';
 import { Checkbox } from './components/CheckBox/Checkbox';
 import { Select } from './components/Select/Select';
 import { RadioGroup } from './components/RadioGroup/RadioGroup';
+import { TextArea } from './components/TextArea/TextArea';
 import type { FormData } from './types/FormTypes';
 import './App.css'
 
@@ -29,6 +30,15 @@ function App() {
 
   // change handler for select
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // change handler for textarea
+  const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm(prev => ({
       ...prev,
@@ -80,7 +90,16 @@ function App() {
             { value: 'high', label: 'High' },
           ]}
           error={!form.priority ? "Priority is required" : undefined}
-        /> 
+        />
+        <TextArea
+          label="Description"
+          name="description"
+          value={form.description}
+          onChange={handleTextAreaChange}
+          placeholder="Enter a description"
+          rows={4}
+          error={form.description.length < 10 ? "Description must be at least 10 characters" : undefined}
+        />
         <Checkbox
           label="Agree to Terms"
           name="agreeToTerms"

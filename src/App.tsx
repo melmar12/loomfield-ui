@@ -6,6 +6,7 @@ import { Select } from './components/Select/Select';
 import { RadioGroup } from './components/RadioGroup/RadioGroup';
 import { TextArea } from './components/TextArea/TextArea';
 import type { FormData } from './types/FormTypes';
+import { validateForm, type Errors } from './utils/validation';
 import './App.css'
 
 
@@ -33,6 +34,19 @@ function App() {
     }));
   };
 
+  const [errors, setErrors] = useState<Errors>({});
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors = validateForm(form);
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form submitted:", form);
+      alert("Form submitted successfully!");
+    }
+  };
+
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
@@ -43,6 +57,7 @@ function App() {
           value={form.name}
           onChange={handleChange}
           placeholder="Enter your name"
+          error={errors.name}
         />
         <NumberInput
           label="Age"
@@ -51,7 +66,7 @@ function App() {
           onChange={handleChange}
           min={0}
           max={120}
-          error={form.age < 0 ? "Age cannot be negative" : undefined}
+          error={errors.age}
         />
         <Select
           label="Role"
@@ -64,7 +79,7 @@ function App() {
             { value: 'user', label: 'User' },
             { value: 'guest', label: 'Guest' },
           ]}
-          error={!form.role ? "Role is required" : undefined}
+          error={errors.role}
         />
         <RadioGroup
           label="Priority"
@@ -76,7 +91,7 @@ function App() {
             { value: 'medium', label: 'Medium' },
             { value: 'high', label: 'High' },
           ]}
-          error={!form.priority ? "Priority is required" : undefined}
+          error={errors.priority}
         />
         <TextArea
           label="Description"
@@ -85,7 +100,7 @@ function App() {
           onChange={handleChange}
           placeholder="Enter a description"
           rows={4}
-          error={form.description.length < 10 ? "Description must be at least 10 characters" : undefined}
+          error={errors.description}
         />
         <Checkbox
           label="Agree to Terms"
@@ -93,7 +108,14 @@ function App() {
           checked={form.agreeToTerms}
           onChange={handleChange}
           disabled={false}
+          error={errors.agreeToTerms}
         />
+        <button
+          onClick={handleSubmit}
+          className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+        >
+          Submit
+        </button>
       </div>
     </div>
   )

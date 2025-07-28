@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /**
  * TextArea component for Loomfield
@@ -21,12 +21,15 @@ export const TextArea = ({
   name,
   value,
   onChange,
-  placeholder = "",
+  placeholder = '',
   rows = 3,
   error,
 }: Props) => (
   <div className="mb-4">
-    <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+    <label
+      htmlFor={name}
+      className="block text-sm font-medium text-gray-700 mb-1"
+    >
       {label}
     </label>
     <textarea
@@ -42,4 +45,4 @@ export const TextArea = ({
     />
     {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
   </div>
-);   
+);

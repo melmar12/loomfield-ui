@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /**
  * RadioGroup component for selecting one option from a set of radio buttons.
@@ -9,7 +9,7 @@ import React from "react";
 type Option = {
   value: string;
   label: string;
-};  
+};
 
 type Props = {
   label: string;
@@ -18,11 +18,20 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   options: Option[];
   error?: string;
-};  
+};
 
-export const RadioGroup = ({ label, name, value, onChange, options, error }: Props) => (
+export const RadioGroup = ({
+  label,
+  name,
+  value,
+  onChange,
+  options,
+  error,
+}: Props) => (
   <div className="mb-4">
-    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+    <label className="block text-sm font-medium text-gray-700 mb-1">
+      {label}
+    </label>
     <div className="flex flex-col space-y-2">
       {options.map(option => (
         <div key={option.value} className="flex items-center">
@@ -37,7 +46,10 @@ export const RadioGroup = ({ label, name, value, onChange, options, error }: Pro
               error ? 'border-red-500' : ''
             }`}
           />
-          <label htmlFor={`${name}-${option.value}`} className="ml-2 block text-sm text-gray-700">
+          <label
+            htmlFor={`${name}-${option.value}`}
+            className="ml-2 block text-sm text-gray-700"
+          >
             {option.label}
           </label>
         </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { TextInput } from './components/TextInput/TextInput';
 import { NumberInput } from './components/NumberInput/NumberInput';
 import { Checkbox } from './components/CheckBox/Checkbox';
@@ -7,8 +7,7 @@ import { RadioGroup } from './components/RadioGroup/RadioGroup';
 import { TextArea } from './components/TextArea/TextArea';
 import type { FormData } from './types/FormTypes';
 import { validateForm, type Errors } from './utils/validation';
-import './App.css'
-
+import './App.css';
 
 function App() {
   const [form, setForm] = useState<FormData>({
@@ -21,16 +20,22 @@ function App() {
   });
 
   // generic change handler that adapts based on input type
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value, type } = e.target;
     setForm(prev => ({
       ...prev,
       [name]:
         type === 'checkbox'
-          ? (e.target instanceof HTMLInputElement ? e.target.checked : false)
+          ? e.target instanceof HTMLInputElement
+            ? e.target.checked
+            : false
           : type === 'number'
-          ? Number(value)
-          : value,
+            ? Number(value)
+            : value,
     }));
   };
 
@@ -41,11 +46,10 @@ function App() {
     const newErrors = validateForm(form);
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted:", form);
-      alert("Form submitted successfully!");
+      console.log('Form submitted:', form);
+      alert('Form submitted successfully!');
     }
   };
-
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
@@ -118,7 +122,7 @@ function App() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

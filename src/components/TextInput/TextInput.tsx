@@ -9,9 +9,19 @@ type Props = {
   error?: string;
 };
 
-export const TextInput = ({ label, name, value, onChange, placeholder, error }: Props) => (
+export const TextInput = ({
+  label,
+  name,
+  value,
+  onChange,
+  placeholder,
+  error,
+}: Props) => (
   <div className="mb-4">
-    <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+    <label
+      htmlFor={name}
+      className="block text-sm font-medium text-gray-700 mb-1"
+    >
       {label}
     </label>
     <input

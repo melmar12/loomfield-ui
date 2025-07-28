@@ -10,7 +10,7 @@ type Option = {
   value: string;
   label: string;
 };
-      
+
 type Props = {
   label: string;
   name: string;
@@ -20,9 +20,19 @@ type Props = {
   error?: string;
 };
 
-export const Select = ({ label, name, value, onChange, options, error }: Props) => (
+export const Select = ({
+  label,
+  name,
+  value,
+  onChange,
+  options,
+  error,
+}: Props) => (
   <div className="mb-4">
-    <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+    <label
+      htmlFor={name}
+      className="block text-sm font-medium text-gray-700 mb-1"
+    >
       {label}
     </label>
     <select
@@ -34,7 +44,9 @@ export const Select = ({ label, name, value, onChange, options, error }: Props) 
         error ? 'border-red-500' : 'border-gray-300'
       }`}
     >
-      <option value="" disabled>Select an option</option>
+      <option value="" disabled>
+        Select an option
+      </option>
       {options.map(option => (
         <option key={option.value} value={option.value}>
           {option.label}

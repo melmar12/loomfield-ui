@@ -21,7 +21,9 @@ describe('Select', () => {
 
     expect(screen.getByLabelText(/role/i)).toBeInTheDocument();
 
-    fireEvent.change(screen.getByLabelText(/role/i), { target: { value: 'user' } });
+    fireEvent.change(screen.getByLabelText(/role/i), {
+      target: { value: 'user' },
+    });
     expect(handleChange).toHaveBeenCalled();
   });
 

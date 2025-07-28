@@ -13,9 +13,16 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   error?: string;
-};  
+};
 
-export const Checkbox = ({ label, name, checked, onChange, disabled, error }: Props) => (
+export const Checkbox = ({
+  label,
+  name,
+  checked,
+  onChange,
+  disabled,
+  error,
+}: Props) => (
   <div className="mb-4 flex items-center">
     <input
       id={name}
@@ -26,9 +33,7 @@ export const Checkbox = ({ label, name, checked, onChange, disabled, error }: Pr
       disabled={disabled}
       className={`h-4 w-4 text-blue-600 focus:ring-blue-500 ${
         error ? 'border-red-500' : 'border-gray-300'
-      } rounded ${
-        disabled ? 'cursor-not-allowed opacity-50' : ''
-      }`}
+      } rounded ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
     />
     <label htmlFor={name} className="ml-2 block text-sm text-gray-700">
       {label}

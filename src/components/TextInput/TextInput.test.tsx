@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { TextInput } from './TextInput';
 
-
 describe('TextInput', () => {
   it('renders with label and updates value on change', () => {
     const handleChange = vi.fn();

@@ -29,7 +29,7 @@ export const RadioGroup = ({
   error,
 }: Props) => (
   <div className="mb-4">
-    <label className="block text-sm font-medium text-gray-700 mb-1">
+    <label className="mb-1 block text-sm font-medium text-gray-700">
       {label}
     </label>
     <div className="flex flex-col space-y-2">
@@ -42,7 +42,7 @@ export const RadioGroup = ({
             value={option.value}
             checked={value === option.value}
             onChange={onChange}
-            className={`h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded ${
+            className={`size-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 ${
               error ? 'border-red-500' : ''
             }`}
           />

@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "format": "prettier --write .",
-    "lint": "eslint src"
+    "lint": "eslint src --fix"
   },
   "dependencies": {
     "react": "^19.1.0",

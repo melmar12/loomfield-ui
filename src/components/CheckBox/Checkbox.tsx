@@ -31,7 +31,7 @@ export const Checkbox = ({
       checked={checked}
       onChange={onChange}
       disabled={disabled}
-      className={`h-4 w-4 text-blue-600 focus:ring-blue-500 ${
+      className={`size-4 text-blue-600 focus:ring-blue-500 ${
         error ? 'border-red-500' : 'border-gray-300'
       } rounded ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
     />

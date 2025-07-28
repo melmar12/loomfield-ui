@@ -52,9 +52,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6">Loomfield Form</h1>
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-6">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+        <h1 className="mb-6 text-2xl font-bold">Loomfield Form</h1>
         <TextInput
           label="Name"
           name="name"
@@ -116,7 +116,7 @@ function App() {
         />
         <button
           onClick={handleSubmit}
-          className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+          className="mt-4 w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
         >
           Submit
         </button>

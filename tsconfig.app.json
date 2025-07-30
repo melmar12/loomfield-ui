@@ -26,7 +26,18 @@
     /* paths */
     "baseUrl": "src",
     "paths": {
-      "@Spinner": ["components/Spinner/Spinner.tsx"]
+      "@/utils/validation": ["utils/validation.ts"],
+      "@/types/FormTypes": ["types/FormTypes.ts"],
+      "@Button": ["components/Button/Button.tsx"],
+      "@CheckBox": ["components/CheckBox/CheckBox.tsx"],
+      "@Form": ["components/Form/Form.tsx"],
+      "@NumberInput": ["components/NumberInput/NumberInput.tsx"],
+      "@RadioGroup": ["components/RadioGroup/RadioGroup.tsx"],
+      "@Select": ["components/Select/Select.tsx"],
+      "@Spinner": ["components/Spinner/Spinner.tsx"],
+      "@SuccessScreen": ["components/SuccessScreen/SuccessScreen.tsx"],
+      "@TextArea": ["components/TextArea/TextArea.tsx"],
+      "@TextInput": ["components/TextInput/TextInput.tsx"],
     }
   },
   "include": ["src"]

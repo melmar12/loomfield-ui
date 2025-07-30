@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 
 /**
@@ -15,7 +16,7 @@ type Props = {
   error?: string;
 };
 
-export const Checkbox = ({
+export const CheckBox = ({
   label,
   name,
   checked,

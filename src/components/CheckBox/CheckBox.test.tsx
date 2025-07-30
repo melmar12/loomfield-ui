@@ -1,13 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { Checkbox } from './Checkbox';
+import { CheckBox } from '@CheckBox';
 
 describe('Checkbox', () => {
   it('renders and toggles checked state', () => {
     const handleChange = vi.fn();
 
     render(
-      <Checkbox
+      <CheckBox
         label="Agree to Terms"
         name="agreeToTerms"
         checked={false}
@@ -24,7 +24,7 @@ describe('Checkbox', () => {
 
   it('applies disabled state', () => {
     render(
-      <Checkbox
+      <CheckBox
         label="Agree to Terms"
         name="agreeToTerms"
         checked={false}

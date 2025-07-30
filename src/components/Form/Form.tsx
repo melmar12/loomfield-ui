@@ -20,7 +20,7 @@ type Props = {
 
 
 export const Form = ({ form, errors, onChange, onSubmit, loading }: Props) => (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} data-testid="form">
     <h1 className="mb-6 text-2xl font-bold">Loomfield Form</h1>
     <TextInput
         label="Name"

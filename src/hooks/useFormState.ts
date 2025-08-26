@@ -1,6 +1,5 @@
-  
 import React, { useState } from 'react';
-import { validateForm } from '@/utils/validation';
+import { validateField, validateForm } from '@/utils/validation';
 import type { Errors } from '@/utils/validation';
 import type { FormData } from '@/types/FormTypes';
 
@@ -22,18 +21,18 @@ export const useFormState = () => {
     >
   ) => {
     const { name, value, type } = e.target;
-    setForm(prev => ({
-      ...prev,
-      [name]:
-        type === 'checkbox'
-          // eslint-disable-next-line no-undef
-          ? e.target instanceof HTMLInputElement
-            ? e.target.checked
-            : false
-          : type === 'number'
-            ? Number(value)
-            : value,
-    }));
+    const parsedValue =
+      type === 'checkbox'
+        ? // eslint-disable-next-line no-undef
+          (e.target as HTMLInputElement).checked
+        : type === 'number'
+          ? Number(value)
+          : value;
+
+    setForm(prev => ({ ...prev, [name]: parsedValue }));
+
+    const error = validateField(name as keyof FormData, parsedValue);
+    setErrors(prev => ({ ...prev, [name]: error }));
   };
 
   const [errors, setErrors] = useState<Errors>({});
@@ -72,5 +71,13 @@ export const useFormState = () => {
     setErrors({});
   };
 
-  return { form, errors, submitted, loading, handleChange, handleSubmit, reset };
+  return {
+    form,
+    errors,
+    submitted,
+    loading,
+    handleChange,
+    handleSubmit,
+    reset,
+  };
 };

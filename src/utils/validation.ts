@@ -22,3 +22,13 @@ export function validateForm(form: FormData): Errors {
 
   return errors;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function validateField(
+  name: keyof FormData,
+  value: any
+): string | undefined {
+  const form: Partial<FormData> = { [name]: value };
+  const errors = validateForm(form as FormData);
+  return errors[name];
+}

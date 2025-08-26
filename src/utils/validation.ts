@@ -23,12 +23,30 @@ export function validateForm(form: FormData): Errors {
   return errors;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function validateField(
-  name: keyof FormData,
-  value: any
+export function validateField<K extends keyof FormData>(
+  name: K,
+  value: FormData[K]
 ): string | undefined {
-  const form: Partial<FormData> = { [name]: value };
-  const errors = validateForm(form as FormData);
-  return errors[name];
+  switch (name) {
+    case 'name':
+      return typeof value === 'string' && value.trim()
+        ? undefined
+        : 'Name is required';
+    case 'age':
+      return typeof value === 'number' && value > 0 && value <= 120
+        ? undefined
+        : 'Age must be between 1 and 120';
+    case 'role':
+      return value ? undefined : 'Role is required';
+    case 'priority':
+      return value ? undefined : 'Priority is required';
+    case 'description':
+      return typeof value === 'string' && value.length >= 10
+        ? undefined
+        : 'Description must be at least 10 characters';
+    case 'agreeToTerms':
+      return value ? undefined : 'You must agree to the terms';
+    default:
+      return undefined;
+  }
 }

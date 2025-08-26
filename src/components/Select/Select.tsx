@@ -18,6 +18,8 @@ type Props = {
   value: string;
   // eslint-disable-next-line no-undef
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  // eslint-disable-next-line no-undef
+  onBlur?: React.FocusEventHandler<HTMLSelectElement>;
   options: Option[];
   error?: string;
 };
@@ -27,6 +29,7 @@ export const Select = ({
   name,
   value,
   onChange,
+  onBlur,
   options,
   error,
 }: Props) => (
@@ -37,6 +40,7 @@ export const Select = ({
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         className={`w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
           error ? 'border-red-500' : 'border-gray-300'
         }`}

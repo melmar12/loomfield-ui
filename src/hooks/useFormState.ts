@@ -36,12 +36,48 @@ export const useFormState = () => {
   };
 
   const [errors, setErrors] = useState<Errors>({});
+  const [touched, setTouched] = useState<
+    Partial<Record<keyof FormData, boolean>>
+  >({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const handleBlur: React.FocusEventHandler<
+    // eslint-disable-next-line no-undef
+    HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+  > = e => {
+    const { name, value, type } = e.target;
+    const key = name as keyof FormData;
+
+    const parsed =
+      type === 'checkbox'
+        ? // eslint-disable-next-line no-undef
+          (e.target as HTMLInputElement).checked
+        : type === 'number'
+          ? Number(value)
+          : value;
+
+    setTouched(prev => ({ ...prev, [key]: true }));
+    const err = validateField(key, parsed);
+    setErrors(prev => ({ ...prev, [key]: err }));
+  };
 
   // Submit handler with fake API call
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    setSubmitAttempted(true);
+    // mark all fields touched so subsequent typing shows/clears errors
+    setTouched({
+      name: true,
+      age: true,
+      role: true,
+      priority: true,
+      description: true,
+      agreeToTerms: true,
+    });
+
     const newErrors = validateForm(form);
     setErrors(newErrors);
 
@@ -57,9 +93,15 @@ export const useFormState = () => {
     }
   };
 
+  const getFieldError = (key: keyof FormData): string | undefined => {
+    if (touched[key] || submitAttempted) {
+      return validateField(key, form[key]);
+    }
+    return undefined;
+  };
+
   // Reset form to allow filling again
   const reset = () => {
-    setSubmitted(false);
     setForm({
       name: '',
       age: 0,
@@ -69,6 +111,9 @@ export const useFormState = () => {
       agreeToTerms: false,
     });
     setErrors({});
+    setTouched({});
+    setSubmitAttempted(false);
+    setSubmitted(false);
   };
 
   return {
@@ -76,7 +121,10 @@ export const useFormState = () => {
     errors,
     submitted,
     loading,
+    touched,
     handleChange,
+    handleBlur,
+    getFieldError,
     handleSubmit,
     reset,
   };

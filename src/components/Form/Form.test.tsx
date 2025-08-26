@@ -23,6 +23,7 @@ describe('Form component', () => {
         onChange={handleChange}
         onSubmit={() => {}}
         loading={false}
+        getFieldError={() => undefined}
       />
     );
 
@@ -40,6 +41,7 @@ describe('Form component', () => {
         onChange={() => {}}
         onSubmit={handleSubmit}
         loading={false}
+        getFieldError={() => undefined}
       />
     );
 

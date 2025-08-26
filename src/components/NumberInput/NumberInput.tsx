@@ -12,6 +12,7 @@ type Props = {
   name: string;
   value: number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   min?: number;
   max?: number;
   error?: string;
@@ -22,6 +23,7 @@ export const NumberInput = ({
   name,
   value,
   onChange,
+  onBlur,
   min,
   max,
   error,
@@ -34,6 +36,7 @@ export const NumberInput = ({
         type="number"
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         min={min}
         max={max}
         className={`w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 ${

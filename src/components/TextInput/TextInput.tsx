@@ -7,6 +7,8 @@ type Props = {
   value: string;
   // eslint-disable-next-line no-undef
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  // eslint-disable-next-line no-undef
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   placeholder?: string;
   error?: string;
 };
@@ -16,6 +18,7 @@ export const TextInput = ({
   name,
   value,
   onChange,
+  onBlur,
   placeholder,
   error,
 }: Props) => (
@@ -27,6 +30,7 @@ export const TextInput = ({
         type="text"
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         placeholder={placeholder}
         className={`w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
           error ? 'border-red-500' : 'border-gray-300'

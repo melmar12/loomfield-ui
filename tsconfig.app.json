@@ -38,6 +38,7 @@
       "@SuccessScreen": ["components/SuccessScreen/SuccessScreen.tsx"],
       "@TextArea": ["components/TextArea/TextArea.tsx"],
       "@TextInput": ["components/TextInput/TextInput.tsx"],
+      "@FormField": ["components/FormField/FormField.tsx"]
     }
   },
   "include": ["src"]

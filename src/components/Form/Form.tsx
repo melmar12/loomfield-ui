@@ -23,11 +23,13 @@ type Props = {
   ) => void;
   loading: boolean;
   getFieldError: (key: keyof FormData) => string | undefined;
+  isValid: boolean;
 };
 
 export const Form = ({
   form,
   errors,
+  isValid,
   onChange,
   onSubmit,
   onBlur,
@@ -98,7 +100,12 @@ export const Form = ({
       disabled={false}
       error={errors.agreeToTerms}
     />
-    <Button onClick={onSubmit} loading={loading} variant="primary">
+    <Button
+      onClick={onSubmit}
+      loading={loading}
+      disabled={!isValid}
+      variant="primary"
+    >
       Submit
     </Button>
   </form>

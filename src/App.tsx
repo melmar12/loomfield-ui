@@ -9,6 +9,7 @@ function App() {
     errors,
     submitted,
     loading,
+    isValid,
     handleChange,
     handleBlur,
     handleSubmit,
@@ -27,6 +28,7 @@ function App() {
             onSubmit={handleSubmit}
             loading={loading}
             getFieldError={getFieldError}
+            isValid={isValid}
           />
         ) : (
           <SuccessScreen form={form} onReset={reset} />

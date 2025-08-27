@@ -116,12 +116,15 @@ export const useFormState = () => {
     setSubmitted(false);
   };
 
+  const isValid = Object.keys(validateForm(form)).length === 0;
+
   return {
     form,
     errors,
     submitted,
     loading,
     touched,
+    isValid,
     handleChange,
     handleBlur,
     getFieldError,

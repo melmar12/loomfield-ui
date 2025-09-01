@@ -23,7 +23,7 @@ type Props = {
   ) => void;
   loading: boolean;
   getFieldError: (key: keyof FormData) => string | undefined;
-  isValid: boolean;
+  isValid?: boolean;
 };
 
 export const Form = ({
